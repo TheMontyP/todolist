@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block contenu %}
+	<div class ="container-fluid mainContainer">
+		<div class="row">
+			<div class="col-md-5">
+				<div class="statsContainer">
+					<p>TACHES RÉCURRENTES</p>
+				</div>
+				<div class="statsContainer">
+					<p>PROJETS EN COURS</p>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="statsContainer">
+					<span id="doneStats"></span>
+					<p>TACHES ACCOMPLIES PAR JOUR</br>moyenne sur un mois</p>
+				</div>
+				<div class="statsContainer">
+					<span id="lateStats"></span>
+					<p>TACHES EN RETARD PAR JOUR</br>moyenne sur un mois</p>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div id="monthChartContainer">
+					<canvas id="lineChartMonth" width="730" height="400"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

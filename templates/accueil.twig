@@ -1,0 +1,120 @@
+{% extends "base.twig" %}
+
+{% block contenu %}
+	
+
+
+<div class ="container-fluid mainContainer">
+	<div class="row-content">
+		<div class="col-sm-6 col-md-3" id="todoToday">
+				<h2>A FAIRE AUJOURD'HUI</h2>
+				<ul class ="tasksList" id="tasksToday"></ul>
+		</div>
+		<div class="col-sm-6 col-md-9" id="weekPlanning">
+			<h2 id="weekPlanningHeader">A FAIRE DANS LA SEMAINE</h2>
+		  	<div class="row seven-cols">
+			    <div class="col-md-1">
+			    	<h3 id="day1"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay1"></span>
+			    		<span class="weekDayRdv" id="rdvDay1"></span>
+			    	</div> 
+			    </div>
+			    <div class="col-md-1">
+			    	<h3 id="day2"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay2"></span>
+			    		<span class="weekDayRdv" id="rdvDay2"></span>
+			    	</div>  
+			    </div>
+			    <div class="col-md-1">
+			    	<h3 id="day3"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay3"></span>
+			    		<span class="weekDayRdv" id="rdvDay3"></span>
+			    	</div>  
+			    </div>
+			    <div class="col-md-1">
+			    	<h3 id="day4"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay4"></span>
+			    		<span class="weekDayRdv" id="rdvDay4"></span>
+			    	</div> 
+			    </div>
+			    <div class="col-md-1">
+			    	<h3 id="day5"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay5"></span>
+			    		<span class="weekDayRdv" id="rdvDay5"></span>
+			    	</div>  
+			    </div>
+			    <div class="col-md-1">
+			    	<h3 id="day6"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay6"></span>
+			    		<span class="weekDayRdv" id="rdvDay6"></span>
+			    	</div> 
+			    </div>
+			    <div class="col-md-1">
+			    	<h3 id="day7"></h3>
+			    	<div class="weekDay">
+			    		<span class="weekDayTasks" id="tasksDay7"></span>
+			    		<span class="weekDayRdv" id="rdvDay7"></span>
+			    	</div>  
+			    </div>
+		  	</div>
+		  	
+		  	<div class="row">
+		  		<div class="col-md-4" id="nextRdvDisplay">
+		  			<h2 id="rdvDivHeader">PROCHAIN RDV</h2>
+		  			<div id="nextRdv">
+		  				<div id="nextRdvInfoContainer">
+			  				<p id="nextRdvWeekDay"></p>
+			  				<div id="nextRdvDateContainer">
+			  					<p id="nextRdvDate"></p>
+			  					<p id="nextRdvTime"></p>
+			  				</div>
+			  				<p id="nextRdvName"></p>
+		  				</div>
+		  				<div id ="nextRdvAdditional">
+			  				<p id="nextRdvAdress">Adress</p>
+			  				<p id="nextRdvTel">Tel</p>
+			  				<p id="nextRdvMail">Mail</p>
+		  				</div>
+		  			</div>
+		  		</div>
+		  		<div class="col-md-8" id="statsPanelDisplay">
+		  			<h2 id="statsPanelHeader">STATISTIQUES</h2>
+		  			<div id="statsPanel" class="row">
+		  				<div class="col-md-6 leftChart">
+		  					<p>AUJOURD'HUI</p>
+		  					<div id="donutChartContainer">
+		  						<canvas id="donutChart" width="300" height="300"></canvas>
+		  					</div>
+		  				</div>
+		  				<div class="col-md-6">
+		  				</div>
+		  			</div>
+		  		</div>
+		  	</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="modalWeekDayTask" class="modal">
+	<div id="weekDayTasksContainer" class="modalContainer">
+		<span id="weekDayTasksTitle" class="modalTitle"></span>
+		<ul class ="tasksList" id="weekDayTasksList"></ul>
+	</div>
+</div>
+
+<div id="modalWeekDayRdv" class="modal">
+	<div id="weekDayRdvContainer" class="modalContainer">
+		<span id="weekDayRdvTitle" class="modalTitle"></span>
+		<ul class ="taskList" id="weekDayRdvList"></ul>
+	</div>
+</div>
+
+
+{% endblock %}

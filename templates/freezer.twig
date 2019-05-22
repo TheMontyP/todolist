@@ -1,0 +1,121 @@
+{% extends "base.twig" %}
+
+{% block contenu %}
+
+<div class="container-fluid" id="freezerContainer">
+	<div id="addFreezer">
+		<button id="freezerModalOpener">CONGELER</button>
+	</div>
+	<div id="searchFreezerCtn">
+		<div id="searchFreezerHeader">
+			<p>RECHERCHE</p>
+		</div>
+		<div id="searchContainer">
+			<div class="searchFreezerRow" id="searchFreezerRow1">
+				<button class="searchFreezerButton" id="searchFreezerMeat">VIANDES</button>
+				<button class="searchFreezerButton" id="searchFreezerVegs">LÉGUMES</button>
+			</div>
+			<div class="searchFreezerRow" id="searchFreezerRow2">
+				<button class="searchFreezerButton" id="searchFreezerMeal">PLATS</button>
+				<button class="searchFreezerButton" id="searchFreezerSugary">SUCRÉ</button>
+				<button class="searchFreezerButton" id="searchFreezerOther">AUTRES</button>
+			</div>
+			<div id="freezerSearchBar">
+				<form id="searchFreezerForm" action="freezer.php" method="post">
+					<input type="text" name="name" placeholder="Recherche...">
+					<button type="button" id="submitButtonSearchFreezer"><i class="fa fa-search"></i></button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="searchFreezerTableContainer">
+		<div id="searchFreezerTableHeader">
+			<span id="searchFreezerTitlePlaceHolder">RETOUR</span><span id="searchFreezerTableTitle"></span><button id="searchFreezerBackBtn">RETOUR</button>
+		</div>
+		<table id="searchFreezerTable" class="sortable">
+			<thead>
+				<tr>
+				    <th>INGRÉDIENT</th>
+				    <th>QUANTITÉ</th>
+				    <th>EMPLACEMENT</th>
+				    <th>DATE</th>
+				    <th>OPTIONS</th>
+				 </tr>
+			</thead>
+			<tbody id="tbodySearchFreezer"></tbody>
+		</table>
+	</div>
+</div>
+
+<div id="freezerModal" class="modal">
+    <div id="freezerModalContainer" class="modalContainer">
+        <span class="modalTitle" id="freezerModalTitle"></span>
+        <p class="freezerFormTitle">CHOISIR UN INGRÉDIENT</p>
+        <form id="freezerForm" class="creationForm" action="freezer.php" method="post" onsubmit="return validateFreezerForm()">
+        	<div id="freezerFormNameMenu">
+		    	<div id="freezerFormRecurrent" class="freezerRadio freezerFormRow">
+		        	<input type="radio" id="freezerRecu1" name="name">
+		            <label for="freezerRecu1" class="freezerFormNameBtnInput"></label>
+		            <input type="radio" id="freezerRecu2" name="name">
+		            <label for="freezerRecu2" class="freezerFormNameBtnInput"></label>
+		            <input type="radio" id="freezerRecu3" name="name">
+		            <label for="freezerRecu3" class="freezerFormNameBtnInput"></label>
+		            <input type="radio" id="freezerRecu4" name="name">
+		            <label for="freezerRecu4" class="freezerFormNameBtnInput"></label>
+		            <input type="radio" id="freezerRecu5" name="name">
+		            <label for="freezerRecu5" class="freezerFormNameBtnInput"></label>
+				</div>
+				<span class="freezerFormBorder" id="freezerFormBorder1"></span>
+				<div class="freezerFormRow" id="freezerFormCategorySelection">
+					<div class="freezerFormCatBtn" id="freezerFormMeat">VIANDES</div>
+					<div class="freezerFormCatBtn" id="freezerFormVegs">LÉGUMES</div>
+					<div class="freezerFormCatBtn" id="freezerFormMeal">PLATS</div>
+					<div class="freezerFormCatBtn" id="freezerFormSugary">SUCRÉ</div>
+					<div class="freezerFormCatBtn" id="freezerFormOther">AUTRES</div>
+				</div>
+			</div>
+			<div id="freezerFormNameSelection" class="freezerRadio freezerFormRow">
+                <div id='freezerFormStoredNames'></div>
+                <div id='freezerFormStoredNavBtns'>
+                	<button type="button" id="freezerFormPrevBtn" class="freezerFormNameBtn">PRÉCÉDENT</button>
+                	<button type="button" id="freezerFormNextBtn" class="freezerFormNameBtn">SUIVANT</button>
+                	<div id="freezerFormTextInputCtn" class="freezerFormNameBtn">
+	                	<p>NOUVELLE ENTRÉE</p>
+	                	<input type="text" name="nameNew" id="freezerFormTextInput">
+					</div>
+					<button type="button" id="freezerFormBackBtn" class="freezerFormNameBtn">RETOUR</button>
+                </div>
+			</div>
+			<span class="freezerFormBorder" id="freezerFormBorder2"></span>
+			<p class="freezerFormTitle">CHOISIR UN EMPLACEMENT</p>
+			<div class="freezerFormRow freezerRadio">
+                <input type="radio" id="freezer0" name="place" value="cuisine">
+                <label for="freezer0" class="freezerFormNameBtn">CUISINE</label>
+                <input type="radio" id="freezer1" name="place" value="boxGarage">
+                <label for="freezer1" class="freezerFormNameBtn">BOX GARAGE</label>
+                <input type="radio" id="freezer2" name="place" value="frigoGarage">
+                <label for="freezer2" class="freezerFormNameBtn">FRIGO GARAGE</label>
+            </div>
+			<span class="freezerFormBorder" id="freezerFormBorder3"></span>
+			<p class="freezerFormTitle">RENSEIGNER LA QUANTITÉ</p>
+			<div id="freezerFormQtyContainer">
+				<input type="text" id="freezerFormQuantity" name="quantity" placeHolder="Nombre">
+				<input type="text" id="freezerFormUnit" name="unit" placeHolder="Unité">
+			</div>
+			<div id="freezerFormRecap">
+				<p>Résumé : <span id="freezerQtyRecap"></span> <span id="freezerUnitRecap"></span> de <span id="freezerNameRecap"></span> dans le congélateur <span id="freezerPlaceRecap"></span></p>
+			</div>
+			<div id="freezerFormError">
+				<p>Un ou plusieurs champs n'ont pas été remplis :
+					<span id="freezerFormErrorDetails"></span>	
+				</p>
+			</div>
+			<input type="hidden" id="freezerFormCategory" name="category" value="">
+			<button id="validateFreezer"class="submitButton">VALIDER</button>
+        </form>
+    </div>
+</div>
+
+<script src="../js/freezer.js"></script>
+<script src="../js/sortTable.js"></script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block contenu %}
+
+<div class="container-fluid" id="projectsContainer">
+	<div class="row-content">
+		<div class="col-md-3" id="projectsListContainer">
+			<h2 id="projectsListHeader">PROJETS EN COURS</h2>
+			<ul id="projectsList"></ul>
+		</div>
+		<div class="col-md-9" id="highlightedProjectContainer">
+			<div id="currentProjectHeader">
+				<span id="currentProjectTitlePlaceHolder">TERMINER LE PROJET</span><span id="currentProjectTitle"></span><button id="endProject">TERMINER LE PROJET</button>
+			</div>
+			<div id="highlightedProject">
+				<div class="projectStatus">
+					<h2 class="projectTitle">CONCEPTION</h2><span class="projectStatusCount" id="conceptionStatus"></span>
+				</div>
+				<ul class="currentProjectList" id="currentProjectConception"></ul>
+				<div class="projectStatus">
+					<h2 class="projectTitle">ACHATS</h2><span class="projectStatusCount" id="purchaseStatus"></span>
+				</div>
+				<ul class="currentProjectList" id="currentProjectPurchase"></ul>
+				<div class="projectStatus">
+					<h2 class="projectTitle">REALISATION</h2><span class="projectStatusCount" id="executionStatus"></span>
+				</div>
+				<ul class="currentProjectList" id="currentProjectExecution"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/projectsDisplay.js"></script>
+{% endblock %}

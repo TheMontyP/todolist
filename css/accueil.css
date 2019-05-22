@@ -1,0 +1,931 @@
+html,body
+{
+    margin:0px;
+    padding:0px;
+    width:100%;
+    background-color:rgb(230, 230, 230);
+    font-family: 'Open Sans', sans-serif;
+    color:rgb(244, 244, 244);
+}
+
+h2
+{
+	font-size:1.4em;
+	border-left: 6px solid rgb(39, 174, 96);
+	padding:10px;
+	margin:0;
+	background-color: rgb(46, 204, 113);
+	width:100%;
+	font-weight: 400;
+	cursor:default;
+}
+
+h3
+{
+	font-size:1.2em;
+	padding:14px 5px 0 5px;
+	margin:0;
+	width:100%;
+	height:15%;
+	font-weight: 300;
+	text-align:center;
+	cursor:default;
+	color:black;
+}
+
+input[type="text"]{
+	height:34px;
+	padding:4px;
+}
+
+ /***********************************NAVBAR************************************/
+
+#navbarContainer{
+	background-color:rgb(39, 174, 96);
+	border:0px;
+	border-radius:0px;
+}
+
+.navbar{
+	border:1px solid rgb(39, 174, 96);
+	border-radius:0px;
+	font-family: 'Dosis', sans-serif;
+	color:rgb(244, 244, 244);
+}
+
+/*titre*/
+.navbar-inverse .navbar-brand{
+	background-color:rgb(39, 174, 96);
+	font-size:2em;
+	cursor:pointer;
+	color:rgb(244, 244, 244);
+}
+
+/*Accueil*/
+.navbar-inverse .navbar-nav .active > a{
+	background-color:rgb(39, 174, 96);
+	color:rgb(244, 244, 244);
+	font-size:1.5em;
+	cursor:pointer;
+}
+.navbar-inverse .navbar-nav .active > a:hover
+{
+	background-color: rgb(46, 204, 113);
+	text-decoration: none;
+	color:rgb(244, 244, 244);
+}
+
+/*Boutons menu droite*/
+.navbar-inverse .navbar-right > li > a{
+	background-color:rgb(39, 174, 96);
+	color:rgb(244, 244, 244);
+	font-size:1.5em;
+	cursor:pointer;
+}
+
+.navbar-inverse .navbar-right > li > a:hover
+{
+	background-color: rgb(46, 204, 113);
+	text-decoration: none;
+	color:rgb(244, 244, 244);
+}
+
+
+/*dropdown quand cliqué*/
+.navbar-inverse .navbar-right > .open > a:focus
+{
+	background-color: rgb(46, 204, 113);
+	text-decoration: none;
+	color:rgb(244, 244, 244);
+}
+
+
+/*hamburger*/
+.navbar-inverse .navbar-toggle{
+	background-color:rgb(34, 153, 84);
+	border:0px;
+}
+
+.navbar-inverse .navbar-toggle:focus{
+	background-color:rgb(34, 153, 84);
+	border:0px;
+}
+
+.navbar-inverse .navbar-toggle:hover{
+	background-color:rgb(30, 132, 73);
+	border:0px;
+}
+
+
+/*Menu dropdown*/
+#creationDropdown{
+	background-color:rgb(39, 174, 96);
+	min-width:102px;
+}
+
+#creationDropdown> li>a{
+	background-color:rgb(39, 174, 96);
+	cursor:pointer;
+	color:rgb(244, 244, 244);
+	font-size:1.2em;
+	padding-left:25px;
+}
+
+#creationDropdown >li>a:hover
+{
+	background-color: rgb(46, 204, 113);
+	text-decoration: none;
+	color:rgb(244, 244, 244);
+}
+
+
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+/*************************************************BLOC PRINCIPAL************************************************/
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+
+
+/***************************** BLOC A FAIRE AUJOURD'HUI*******************************/
+
+
+
+#todoToday h2{
+	border-left:6px solid rgb( 202, 111, 30 );
+	background-color: rgb(230, 126, 34);
+	box-shadow:1px 0 2px grey;
+}
+
+.tasksList{
+	width:100%;
+	background:rgb(244, 244, 244);
+	display:inline-block;
+	padding-left:0px;
+	vertical-align:top;
+	margin-top:0px;
+	padding-bottom:20px;
+	box-shadow:1px 0 2px grey;
+	overflow-y: auto;
+}
+
+.taskLogo
+{
+	width: 70px;
+	height:70px;
+	list-style-type: none;
+	margin-top:0px;
+	cursor:pointer;
+	display:inline-block;
+	border-radius:3px;
+}
+
+.task, .rdv
+{
+	height:90px;
+	list-style-type: none;
+	padding:10px;
+	cursor:pointer;
+	margin:15px;
+	background-color:rgb(250,250,250);
+	border-radius:5px;
+	box-shadow:1px 1px 3px grey;
+}
+
+.task:hover, .rdv:hover{
+	background-color: white;
+	text-decoration: none;
+	color:rgb(244, 244, 244);
+}
+
+
+.taskText, .rdvText
+{
+	margin-top:0;
+	vertical-align:top;
+	display:inline-block;
+	max-width: 70%;
+}
+
+.taskColoredText, .rdvColoredText
+{
+	font-size: 1.4em;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: 300;
+	margin-top: 10px;
+	color:black;
+}
+
+.taskDeadLine, .rdvDeadLine
+{
+	font-size:0.7em;
+	margin-left:5px;
+	color:black;
+}
+
+
+
+/****************************BASE MODAL*****************************************/
+.modal
+{
+	cursor:pointer;
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    padding-top: 25px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modalContainer
+{
+	margin-left:auto;
+  	margin-right:auto;
+	background-color: rgb(244, 244, 244);
+	font-weight:300;
+	cursor:default;
+	overflow-y: auto;
+	color:black;
+}
+
+
+/************************************POP UP CREATION*****************************************/
+
+
+
+.modalTitle
+{	
+	display:block;
+	height:50px;
+	line-height:50px;
+	font-size:1.6em;
+	color:rgb(244, 244, 244);
+	text-align:center;
+}
+
+.popUpCatText
+{
+	display:inline-block;
+	margin-left:20px;
+	font-size:1.2em;
+}
+.popUpCatTextDetails
+{
+	display:inline-block;
+	margin-left:3px;
+	font-size:0.8em;
+	color:grey;
+}
+
+.modalCatComment{
+	vertical-align:top;
+	display:inline-block;
+	font-size:1.2em;
+}
+
+.formComment{
+	display:inline-block;
+	width:80%;
+	height: 100px;
+	vertical-align:top;
+	margin-left:10px;
+	resize:none;
+}
+
+.submitButton{
+	border: none;
+	display:inline-block;
+	width:100px;
+	height:40px;
+	background: rgb(39, 174, 96);
+	color:rgb(244, 244, 244);
+	font-family: 'Dosis', sans-serif;
+	font-weight:300;
+	font-size:1.3em;
+	cursor: pointer;
+	position:relative;
+	right:10px;
+	top:30px;
+	float:right;
+}
+
+
+/***********************************TASK***********************************************/
+
+#taskModalContainer{
+	height:600px;
+}
+
+#taskModalTitle{
+	background-color: rgb(39, 174, 96);
+}
+
+#taskFormLeftPart
+{
+	height:220px;
+	padding-top:15px;
+}
+
+#taskFormLeftPart input[type="text"]
+{
+	display:inline-block;
+	width:85%;
+	margin-left:20px;
+	margin-top:5px;
+	margin-bottom:15px;
+}
+
+#taskFormRightPart
+{
+	height:220px;
+	border-left:2px solid rgb(46, 204, 113);
+	padding-top:35px;
+}
+
+
+
+.checkBoxRow{
+	margin-bottom:20px;
+}
+
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.checkBoxLabel {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 50px;
+	height: 25px;
+	background: grey;
+	display: inline-block;
+	border-radius: 25px;
+	position: relative;
+	margin-left:85px;
+	margin-top:10px;
+}
+
+.checkBoxLabel:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 19px;
+	height: 19px;
+	background: #fff;
+	border-radius: 19px;
+	transition: 0.3s;
+}
+
+input[type=checkbox]:checked + .checkBoxLabel {
+	background: rgb(39, 174, 96);
+}
+
+input[type=checkbox]:checked + .checkBoxLabel:after {
+	left: calc(100% - 3px);
+	transform: translateX(-100%);
+}
+
+.popUpCatRadio
+{
+	display:inline-block;
+	height:40px;
+	position:absolute;
+	line-height:40px;
+	font-size:1.2em;
+}
+
+.radioForm
+{
+	display:block;
+	margin-bottom:30px;
+	height:40px;
+	position:relative;
+}
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.radio-label{
+  color: grey;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 3px 10px;
+  margin-bottom:0px;
+  width:32.35%;
+  text-align:center;
+}
+
+input[type=radio]:checked + .radio-label{
+  color:rgb(244, 244, 244);
+  background: rgb(39, 174, 96);
+}
+
+.radio-group {
+  border: solid 2px rgb(39, 174, 96);
+  display: inline-block;
+  margin: 5px;
+  margin-left:25%;
+  overflow: hidden;
+  width:250px;
+}
+
+#taskFormBottomPart{
+	margin-top:30px;
+	padding-top:20px;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+	border-top:2px solid rgb(46, 204, 113);
+
+}
+
+.modalCatProject{
+	display:inline-block;
+	font-size:1.2em;
+	margin-bottom:20px;
+	margin-right:15px;
+}
+
+#taskModalProject{
+	margin-right:30px;
+	max-width:100px;
+}
+
+/***********************************RDV***********************************************/
+
+#rdvModalContainer{
+	height:600px;
+}
+
+#rdvModalTitle{
+	background-color: rgb(125, 60, 152);
+}
+
+#topRdvForm{
+margin:0;
+padding:0;
+}
+
+#rdvFormLeftPart
+{
+	height:250px;
+	display:inline-block;
+}
+#topRdvForm input[type="text"]
+{
+	display:inline-block;
+	width:85%;
+	margin-left:20px;
+	margin-top:5px;
+	margin-bottom:15px;
+}
+
+
+#rdvFormBottomPart{
+	margin-top:30px;
+	padding-top:30px;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+	border-top:2px solid rgb(125, 60, 152);
+
+}
+
+#submitButtonRdv{
+	background-color: rgb(125, 60, 152);
+	right:20px;
+	top:40px;
+}
+
+
+/***********************************PROJET***********************************************/
+
+#projectModalContainer{
+	height:430px;
+}
+
+#projectModalTitle{
+	background-color: rgb( 174, 182, 191 );
+}
+
+#projectForm input[type="text"]{
+	display:inline-block;
+	width:85%;
+	margin-left:20px;
+	margin-top:5px;
+	margin-bottom:15px;
+}
+
+#projectFormBottomPart{
+	margin-top:30px;
+	padding-top:30px;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+	border-top:2px solid rgb(174, 182, 191 );
+
+}
+
+#submitButtonProject{
+	background-color: rgb(174, 182, 191 );
+	right:20px;
+	top:40px;
+}
+
+/*************************************POP UP TASK DETAILS***********************************/
+
+
+#taskDetails
+{
+	height:410px;
+}
+
+#modalDetailsTitle{
+	background-color: rgb(39, 174, 96);
+}
+
+#modalDetailsDeadLine{
+	margin-left:15px;
+	margin-top:30px;
+	font-size:1.5em;
+	display:inline-block;
+	height:20px;
+}
+
+.modalDetailsThumbnail{
+	margin-top:30px;
+	margin-right:20px;
+	padding:5px;
+	font-family: 'Dosis', sans-serif;
+	font-weight:300;
+	color:rgb(244, 244, 244);
+	float:right;
+}
+
+#modalDetailsDuration{
+	margin-right:40px;
+}
+
+#modalDetailsCommentaryContainer{
+	width:90%;
+	height:45%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	padding-top:30px;
+	padding-bottom:30px;
+	border-top: 2px solid rgb(46, 204, 113);
+}
+
+#modalDetailsCommentaryTitle{
+	vertical-align:top;
+	display:inline-block;
+	font-size:1.5em;
+}
+
+#modalDetailsCommentary{
+	vertical-align:top;
+	display:inline-block;
+	height:80%;
+	width:80%;
+	border: 1px solid black;
+	margin-left:2%;
+	background-color: white;
+	padding:5px;
+}
+
+#validateTask{
+	margin-left:30px;
+	margin-right:20px;
+}
+
+
+/********************************CALENDRIER SEMAINE***********************************/
+
+@media (min-width: 768px){
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1  {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+
+    height:200px;
+    padding:0;
+  }
+}
+
+.seven-cols{
+	background-color: rgb(244, 244, 244);
+	box-shadow: 1px 0 2px grey;
+	margin-left:0px;
+	margin-right:0px;
+}
+
+#weekPlanningHeader{
+	margin-top:50px;
+	border-left: 6px solid rgb( 46, 134, 193);
+	background-color: rgb( 52, 152, 219 );
+	width:100%;
+	box-shadow: 1px 0 2px grey;
+}
+
+.weekDay{
+	border:7px solid rgb(244, 244, 244);
+	background-color: rgb(244, 244, 244);
+	display:block;
+	width:100%;
+	height:85%;
+}
+
+.weekDayTasks{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:40%;
+	text-align:center;
+	font-size:1.1em;
+	color: white;
+	background-color: rgb( 52, 152, 219 );
+	box-shadow: 1px 0 2px grey;
+	margin-top:5%;
+	margin-bottom:10%;
+	border-radius:3px;
+	cursor:pointer;
+}
+
+.weekDayTasks:hover
+{
+	background-color: rgb(46, 134, 193);
+	text-decoration: none;
+	color:rgb(244, 244, 244);
+}
+
+/*Modal liste tache semaine*/
+#weekDayTasksContainer{
+	width:23%;
+	min-width:400px;
+}
+#weekDayTasksTitle{
+	background-color: rgb( 52, 152, 219 );
+}
+
+#weekDayRdvTitle{
+	background-color: rgb( 52, 152, 219 );
+}
+
+#weekDayTasksList{
+	background-color: rgb(230, 230, 230);
+	height:auto;
+	margin-bottom:0px;
+}
+
+.weekDayRdv{
+	display:block;
+	width:100%;
+	height:40%;
+	line-height:62px;
+	text-align:center;
+	color: white;
+	background-color:rgb(93, 173, 226);
+	box-shadow: 1px 0 2px grey;
+	border-radius:3px;
+	cursor:pointer;
+}
+
+#weekDayRdvContainer{
+	width:20%;
+	min-width:400px;
+}
+
+#weekDayRdvContainer .taskList{
+	padding:0;
+}
+
+#weekDayRdvContainer .rdv:hover{
+	color:black;
+}
+
+/********************************BLOC PROCHAIN RDV*******************************/
+
+#rdvDivHeader{
+	margin-top:100px;
+	background-color:rgb( 142, 68, 173 );
+	border-left: 6px solid rgb(125, 60, 152);
+	box-shadow:1px 0 2px grey;
+}
+
+#nextRdvDisplay{
+	height:420px;
+}
+
+#nextRdv{
+	background-color:rgb(244, 244, 244);
+	display:block;
+	width:100%;
+	height:100%;
+	padding-bottom:20px;
+	box-shadow:1px 0 2px grey;
+	padding-top:25px;
+}
+
+#nextRdvInfoContainer{
+	width:92%;
+	height:70%;
+	margin:0 auto;
+	box-shadow:1px 0 2px grey;
+	background-color:rgb( 165, 105, 189 );
+	border-radius:3px;
+}
+
+#nextRdvDateContainer{
+	height:63%;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:rgb(187, 143, 206);
+	padding-top:1px;
+	color:rgb(244, 244, 244);
+	display:flex;
+	flex-direction: column;
+	justify-content:space-around;
+	align-items:center;
+}
+
+#nextRdvWeekDay{
+	color:rgb(244, 244, 244);
+	font-weight:300;
+	text-align:center;
+	font-size: 1.5em;
+	width:100%;
+	height:30px;
+	display:flex;
+	justify-content:center;
+	margin-bottom:0;
+}
+
+#nextRdvDate{
+	font-size: 2.5em;
+	margin-bottom:0px;
+}
+
+#nextRdvTime{
+	font-size: 2.5em;
+	margin-bottom:0px;
+}
+
+#nextRdvName{
+	color:rgb(244, 244, 244);
+	text-align:center;
+	margin:0 auto;
+	font-size: 1.8em;
+	height:60px;
+	display:flex;
+	align-items: center;
+	justify-content:center;
+	font-weight:300;
+}
+
+#nextRdvAdditional{
+	margin-left:20px;
+	background-color:rgb( 232, 218, 239 );
+	width:92%;
+	margin:0 auto;
+	border-radius:3px;
+	box-shadow:1px 0 2px grey;
+
+}
+#nextRdvAdress, #nextRdvTel, #nextRdvMail{
+	color:black;
+	margin-left:20px;
+	margin-top:15px;
+	font-size:1.3em;
+}
+
+
+
+/*************************************BLOC STATS*********************************************************/
+#statsPanelDisplay{
+	height:420px;
+}
+#statsPanelDisplay .row{
+	margin:0;
+}
+#statsPanelHeader{
+	margin-top:100px;
+	box-shadow:1px 0 2px grey;
+}
+
+#statsPanel{
+	height:100%;
+	background-color:rgb(244, 244, 244);
+	box-shadow:1px 0 2px grey;
+}
+#statsPanel .col-md-6{
+	height:100%;
+	padding:0;
+}
+
+#statsPanel p{
+	color:black;
+}
+.leftChart{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
+}
+#donutChartContainer{
+	width:250px;
+	height:250px;
+}
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+/*************************************************MEDIA QUERIES*************************************************/
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+
+@media (max-width: 768px) {
+	.mainContainer{
+		margin-top:40px;
+	}
+	.tasksList{
+		height:100%;
+		max-height:660px;
+	}
+	.taskColoredText{
+		max-width:250px;
+	}
+	#todoToday h2{
+		margin-top:20px;
+	}
+	.modal{
+		position:default;
+	}
+	.modalContainer{
+		max-height:550px;
+		margin-top:50px;
+		width:80%;
+	}
+	input[type="text"]{
+		width:100%;
+	}
+	#taskFormRightPart{
+		padding-top:0;
+	}
+}
+
+@media (min-width: 768px) {
+	.mainContainer{
+		margin-top:80px;
+	}
+	.tasksList{
+		height:760px;
+	}
+	.taskColoredText{
+		max-width:350px;
+	}
+	#todoToday h2{
+		margin-top:50px;
+	}
+	.modal{
+		position:fixed;
+	}
+	.modalContainer{
+		width:40%;
+		min-width:650px;
+		margin-top:100px;
+	}
+	input[type="text"]{
+		width:80%;
+	}
+}
+
+
+@media (max-width: 1600px) {
+	.taskColoredText{
+		max-width:225px;
+	}
+}

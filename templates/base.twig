@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Dosis:600" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- Bootstrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"><!-- Flatpickr-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- JQuery-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><!-- Bootstrap-->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><!-- Flatpickr-->
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script><!-- Flatpickr-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script><!--Chart.js-->     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+
+        {% if navigation == 'racine' %}
+            <link rel="stylesheet" type="text/css" href="css/accueil.css" media="screen" />
+        {% else %}
+            <link rel="stylesheet" type="text/css" href="../css/accueil.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="../css/projects.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="../css/stats.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="../css/freezer.css" media="screen" />
+        {% endif %}
+
+        <title>todolist</title>     
+
+    </head>
+
+    <body>
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid" id="navbarContainer">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    {% if navigation == 'racine' %}
+                        <a class="navbar-brand" href="index.php">TODOLIST</a>
+                    {% else %}
+                        <a class="navbar-brand" href="../index.php">TODOLIST</a>
+                    {% endif %}
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        {% if navigation == 'racine' %}
+                            <li class="active"><a href="index.php">ACCUEIL</a></li>
+                        {% else %}
+                            <li class="active"><a href="../index.php">ACCUEIL</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">CRÉER
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu" id="creationDropdown">
+                                <li><a href="#" class="menuButton" id="taskModalOpener">TACHE</a></li>
+                                <li><a href="#" class="menuButton" id="rdvModalOpener">RDV</a></li>
+                                <li><a href="#" class="menuButton" id="projectModalOpener">PROJET</a></li>
+                            </ul>
+                        </li>
+                        {% if navigation == 'racine' %}
+                            <li><a href="php/projects.php" class="menuButton">PROJETS</a></li>
+                            <li><a href="php/freezer.php" class="menuButton">CONGEL</a></li>
+                            <li><a href="php/stats.php" class="menuButton">STATS</a></li>
+                        {% else %}
+                            <li><a href="../php/projects.php" class="menuButton">PROJETS</a></li>
+                            <li><a href="../php/freezer.php" class="menuButton">CONGEL</a></li>
+                            <li><a href="../php/stats.php" class="menuButton">STATS</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--Modal création tache -->
+        <div id="taskModal" class="modal">
+            <div id="taskModalContainer" class="modalContainer">
+                <span class="modalTitle" id="taskModalTitle"></span></br>
+                {% if navigation == 'racine' %}
+                    <form id="taskForm" class="creationForm" action="index.php" method="post">
+                {% else %}
+                    <form id="taskForm" class="creationForm" action="../index.php" method="post">
+                {% endif %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div id="taskFormLeftPart" class="col-lg-4">
+                                <div>
+                                    <span class="popUpCatText">Nom de la tâche</span> </br> 
+                                    <input id="formTaskName" type="text" name="name" placeholder="Entrer un nom concis" required pattern=[a-zA-Zéèàêâùïüë0-9_!^$()?+*.-\'\"]+> </br>
+                                </div>
+                                <div>
+                                    <span class="popUpCatText">Date butoir</span></br>
+                                    <input id="formTaskDeadLine" type="text" name="datePicker" placeholder="Cliquer pour choisir une date">
+                                </div>
+                                <div id="frequency">
+                                    <span class="popUpCatText">Fréquence</span><span class="popUpCatTextDetails">en jours</span> </br>
+                                    <input id="formTaskDelay" type="text" name="delay" placeholder="Nombre supérieur à 0" pattern=[0-9]+> </br>
+                                </div>
+                            </div>
+                            <div id="taskFormRightPart"class="col-lg-8">
+                                <div class="row checkBoxRow">
+                                    <div class="col-xs-6 col-lg-5">
+                                        <span class="popUpCatRadio">Récurrence</span>
+                                        <input type="checkbox" id="recurrenceSwitch" value="yes" name="recurrence"/><label class="checkBoxLabel" for="recurrenceSwitch"></label>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-7">
+                                        <span class="popUpCatRadio" id="privateCheckBoxSpan">Privé</span>
+                                        <input type="checkbox" id="privateSwitch" value="yes" name="private"/><label class="checkBoxLabel" id ="checkBoxLabelPrivate" for="privateSwitch"></label>
+                                    </div>
+                                </div>
+                                <div class="radioForm">
+                                    <span class="popUpCatRadio">Durée</span>
+                                    <div class="radio-group">
+                                        <input type="radio" id="duration1" name="duration" value="short" checked>
+                                        <label for="duration1" class="radio-label">Court</label>
+                                        <input type="radio" id="duration2" name="duration" value="average">
+                                        <label for="duration2" class="radio-label">Moyen</label>
+                                        <input type="radio" id="duration3" name="duration" value="long">
+                                        <label for="duration3" class="radio-label">Long</label><br>
+                                    </div>
+                                </div>
+                                <div class="radioForm">
+                                    <span class="popUpCatRadio">Importance</span>
+                                    <div class="radio-group">
+                                        <input type="radio" id="importance1" name="importance" value="low" checked>
+                                        <label for="importance1" class="radio-label">Faible</label>
+                                        <input type="radio" id="importance2" name="importance" value="average">
+                                        <label for="importance2" class="radio-label">Moyenne</label>
+                                        <input type="radio" id="importance3" name="importance" value="high">
+                                        <label for="importance3" class="radio-label">Élevée</label><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"id="taskFormBottomPart">
+                            <span class="modalCatProject">Projet</span>
+                            <select id="taskModalProject" name="project"></select>
+                            <span class="modalCatProject">Étape</span>
+                            <select id="taskModalProjectStage"name="projectStage">
+                                <option value="conception">Conception</option>
+                                <option value="purchase">Achats</option>
+                                <option value="execution">Réalisation</option>
+                            </select>
+                            </br>
+                            <span class="modalCatComment">Détails</span>
+                            <textarea class="formComment" id="formTaskComment" name="comment" pattern=[a-zA-Zéèàêâùïüë0-9_!^$()?+*.-\'\"]+></textarea>
+                        </div>
+                        </br>
+                        <input type="hidden" id="idCheck" name="idCheck" value="">
+                        <input type="hidden" id="typeCheck" name="typeCheck" value="task">
+                        <button type="submit" class="submitButton" id="submitButtonTask">CRÉER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!--Modal création rdv -->
+        <div id="rdvModal" class="modal">
+            <div id="rdvModalContainer" class="modalContainer">
+                <span class="modalTitle" id="rdvModalTitle"></span></br>
+                {% if navigation == 'racine' %}
+                    <form id="rdvForm" class="creationForm" action="index.php" method="post">
+                {% else %}
+                    <form id="rdvForm" class="creationForm" action="../index.php" method="post">
+                {% endif %}
+                    <div class="row" id="topRdvForm">
+                        <div id="rdvFormLeftPart" class="col-md-6">
+                            <div>
+                                <span class="popUpCatText">Nom du rendez-vous</span> </br> 
+                                <input id="formRdvName" type="text" name="name" placeholder="Entrer un nom concis" required pattern=[a-zA-Zéèàêâùïüë0-9_!^$()?+*.-\'\"]+> </br>
+                            </div>
+                            <div>
+                                <span class="popUpCatText">Date</span></br>
+                                <input id="formRdvDeadLine" type="text" name="datePicker" placeholder="Cliquer pour choisir une date" required>
+                            </div>
+                        </div>
+                        <div id="rdvFormRightPart"class="col-md-6">
+                            <div>
+                                <span class="popUpCatText">Adresse</span> </br> 
+                                <input id="formRdvAdress" type="text" name="adress"> </br>
+                            </div>
+                            <div>
+                                <span class="popUpCatText">Téléphone</span> </br> 
+                                <input id="formRdvTel" type="text" name="tel"> </br>
+                            </div>
+                            <div>
+                                <span class="popUpCatText">Mail</span> </br> 
+                                <input id="formRdvMail" type="text" name="mail"> </br>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rdvFormBottomPart">
+                        <span class="modalCatComment">Détails</span>
+                        <textarea class="formComment" id="formRdvComment" name="comment" pattern=[a-zA-Zéèàêâùïüë0-9_!^$()?+*.-\'\"]+></textarea>
+                    </div>
+                    </br>
+                    <input type="hidden" id="idCheck" name="idCheck" value="">
+                    <input type="hidden" id="typeCheck" name="typeCheck" value="rdv">
+                    <button type="submit" class="submitButton" id="submitButtonRdv">CRÉER</button>
+                </form>
+            </div>
+        </div>
+        <!--Modal création projet -->
+        <div id="projectModal" class="modal">
+            <div id="projectModalContainer" class="modalContainer">
+                <span class="modalTitle" id="projectModalTitle"></span></br>
+                {% if navigation == 'racine' %}
+                    <form id="projectForm" class="creationForm" action="index.php" method="post">
+                {% else %}
+                    <form id="projectForm" class="creationForm" action="../index.php" method="post">
+                {% endif %}
+                    <div>
+                        <span class="popUpCatText">Nom du projet</span> </br> 
+                        <input id="formProjectName" type="text" name="name" placeholder="Entrer un nom concis" required pattern=[a-zA-Zéèàêâùïüë0-9_!^$()?+*.-\'\"]+> </br>
+                    </div>
+                    <div id="projectFormBottomPart">
+                        <span class="modalCatComment">Détails</span>
+                        <textarea class="formComment" id="formProjectComment" name="comment" pattern=[a-zA-Zéèàêâùïüë0-9_!^$()?+*.-\'\"]+></textarea>
+                    </div>
+                    </br>
+                    <input type="hidden" id="idCheck" name="idCheck" value="">
+                    <input type="hidden" id="typeCheck" name="typeCheck" value="project">
+                    <button type="submit" class="submitButton" id="submitButtonProject">CRÉER</button>
+                </form>
+            </div>
+        </div>
+        <!--Modal détails tache -->
+        <div id="modalDetails" class="modal">
+            <div id="taskDetails" class="modalContainer">
+                <span id="modalDetailsTitle" class="modalTitle"></span>
+                <span id="modalDetailsDeadLine"></span>
+                <span id="modalDetailsDuration" class="modalDetailsThumbnail"></span>
+                <span id="modalDetailsImportance" class="modalDetailsThumbnail"></span></br>
+                <div id="modalDetailsCommentaryContainer">
+                    <span id="modalDetailsCommentaryTitle">Détails</span>
+                    <span id="modalDetailsCommentary"></span>
+                </div>
+                <button id="validateTask"class="submitButton">VALIDER</button>
+                <button id="modifyTask"class="submitButton">MODIFIER</button>
+            </div>
+        </div>
+
+            
+        {% block contenu %}
+        {% endblock %}        
+
+
+
+        {% if navigation == 'racine' %}
+            <script src="js/addEntry.js"></script>
+            <script src="js/tasksDisplay.js"></script>
+            <script src="js/flatPickerSetup.js"></script>
+            <script src="js/charts.js"></script>
+        {% else %}
+            <script src="../js/addEntry.js"></script>
+            <script src="../js/tasksDisplay.js"></script>
+            <script src="../js/flatPickerSetup.js"></script>
+            <script src="../js/charts.js"></script>
+        {% endif %}
+        
+    </body>
+
+</html>

@@ -1,0 +1,32 @@
+#monthChartContainer{
+	background-color:rgb(244,244,244);
+	padding: 20px;
+	float:right;/*
+	position:relative;
+	height:50vh;
+	width:40vw;*/
+}
+
+.statsContainer{
+	color:black;
+	background-color:rgb(244,244,244);
+	height:210px;
+	margin: 0 20px 20px 20px;
+	padding:20px;
+	text-align:center;
+	border-radius:2px;
+	display:flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content:center;
+}
+
+.statsContainer span{
+	font-size:5em;
+	font-weight: bold;
+	flex-grow:2;
+}
+
+.statsContainer p{
+	color:rgb( 81, 90, 90 );
+}
